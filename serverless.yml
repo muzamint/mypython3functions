@@ -1,0 +1,28 @@
+service:
+  name: scaleway-python3
+
+provider:
+  name: scaleway
+  runtime: python3
+  # Global Environment variables - used in every functions
+  env:
+    test: test
+  # the path to the credentials file needs to be absolute
+  scwToken: ee8bdd37-b4fc-4e80-ab98-2adb305ee50b
+  scwOrganization: a24e8a50-11c9-44c4-b18d-44c7f5092889
+
+plugins:
+  - serverless-scaleway-functions
+
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - .git/**
+
+functions:
+  first:
+    handler: handlers/handler.handle
+    # Local environment variables - used only in given function
+    env:
+      local: local
