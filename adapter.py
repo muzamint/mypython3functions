@@ -7,7 +7,6 @@ class Adapter:
     to_params = ['quote', 'to', 'market']
 
     def __init__(self, input):
-        print(input)
         self.id = input.get('id', '1')
         self.request_data = input.get('data')
         if self.validate_request_data():

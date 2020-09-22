@@ -9,12 +9,14 @@ def handle(event, context):
     r = requests.get('https://httpbin.org/get',params=ploads)
     body = event["body"]
     y = json.loads(body)
-    print(y)
     data = y
     if data == '':
         data = {}
     adapter = Adapter(data)
     return {
-      "body": json.dumps(adapter.result),
+      "body": json.dumps(adapter.result, indent=2),
       "statusCode": 200,
+      "headers": {
+      "Content-Type": "application/json",
+      },
     }
