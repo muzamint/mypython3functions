@@ -8,11 +8,12 @@ provider:
   env:
     test: test
   # the path to the credentials file needs to be absolute
-  scwToken: ee8bdd37-b4fc-4e80-ab98-2adb305ee50b
+  scwToken: dfdfe21c-bf1a-4199-898d-26a247fdfd59
   scwOrganization: a24e8a50-11c9-44c4-b18d-44c7f5092889
 
 plugins:
   - serverless-scaleway-functions
+  - serverless-offline-scaleway
 
 package:
   exclude:
@@ -22,7 +23,7 @@ package:
 
 functions:
   first:
-    handler: handlers/handler.handle
+    handler: handler.handle
     # Local environment variables - used only in given function
     env:
       local: local
