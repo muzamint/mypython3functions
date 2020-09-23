@@ -2,7 +2,7 @@ from bridge import Bridge
 
 
 class Adapter:
-    base_url = 'https://min-api.cryptocompare.com/data/price'
+    base_url = 'http://kibana.log4analytics.com:9080/1.0/identifiers/did:sov:WRfXPg8dantKVubE3HX8pw' 
     from_params = ['base', 'from', 'coin']
     to_params = ['quote', 'to', 'market']
 
@@ -40,8 +40,10 @@ class Adapter:
                 'tsyms': self.to_param,
             }
             response = self.bridge.request(self.base_url, params)
+            print(dir(response))
             data = response.json()
-            self.result = data[self.to_param]
+            print(type(data))
+            self.result = data['didDocument']['id']
             data['result'] = self.result
             self.result_success(data)
         except Exception as e:

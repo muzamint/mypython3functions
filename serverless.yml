@@ -22,7 +22,7 @@ package:
     - .git/**
 
 functions:
-  first:
+  test:
     handler: handler.handle
     # Local environment variables - used only in given function
     env:
