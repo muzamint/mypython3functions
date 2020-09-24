@@ -7,9 +7,11 @@ import sys
 from adapter import Adapter
 
 def handle(event, context):
-    body = "{\"id\": 1, \"data\": {\"base\": \"ETH\", \"quote\": \"USD\"}}"
-    data = json.loads(body)
-    print(type(data))
+    body = event['body']
+    if body == None:
+      print("NONE")
+    data = json.loads(event['body'])
+    print(data)
     adapter = Adapter(data)
     return {
       "body": json.dumps(adapter.result, indent=2),

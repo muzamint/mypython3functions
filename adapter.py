@@ -2,8 +2,8 @@ from bridge import Bridge
 
 
 class Adapter:
-    base_url = 'http://kibana.log4analytics.com:9080/1.0/identifiers/did:sov:WRfXPg8dantKVubE3HX8pw' 
-    from_params = ['base', 'from', 'coin']
+    base_url = 'http://kibana.log4analytics.com:9080/1.0/identifiers/' 
+    from_params = ['DID_userid']
     to_params = ['quote', 'to', 'market']
 
     def __init__(self, input):
@@ -39,10 +39,11 @@ class Adapter:
                 'fsym': self.from_param,
                 'tsyms': self.to_param,
             }
+            print(self.from_param)
+            self.base_url = self.base_url + self.from_param
+            print(self.base_url)
             response = self.bridge.request(self.base_url, params)
-            print(dir(response))
             data = response.json()
-            print(type(data))
             self.result = data['didDocument']['id']
             data['result'] = self.result
             self.result_success(data)
